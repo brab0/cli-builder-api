@@ -1,0 +1,24 @@
+{
+  "name": "cli-builder-api",
+  "version": "0.0.1",
+  "description": "Build Command Line Interface applications on a simple way.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brab0/cli-builder-api.git"
+  },
+  "author": "Rodrigo Brabo <brabo.rodrigo@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/brab0/cli-builder-api/issues"
+  },
+  "homepage": "https://github.com/brab0/cli-builder-api#readme",
+  "dependencies": {
+    "mout": "^1.0.0",
+    "nopt": "^4.0.1",
+    "require-files": "^0.0.4"
+  }
+}
