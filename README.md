@@ -1,6 +1,6 @@
 CLI Builder API
 ===============
-This project is meant to be a helper to abstract some unecessary layers for global CLIs development, by providing a command schema creator and a single line executor.
+This project is meant to be a helper to abstract some unecessary layers for CLIs development by providing a command schema creator and a single line executor.
 
 ## Instalation
     $ npm install cli-builder-api --save
@@ -27,15 +27,20 @@ Because CLI Builder API does not need that much, all the informations are kept o
 }
 ```
 
-Note that, except for `bin` and `cliBuilder`, all the others are ordinary fields gotten from a `npm init` command. The extra attribute `bin`, informs how we gonna call(`my-project`) and where(`./bin/my-project.js`) npm is gonna find our executable to symlink for global installs [see more](https://docs.npmjs.com/files/package.json#bin). The `cliBuilder` tells to our package where our commands files will be.
+**Note** that, except for `bin` and `cliBuilder`, all the others are ordinary fields gotten from a `npm init` command. The extra attribute `bin`, informs how we gonna call(`my-project`) and where(`./bin/my-project.js`) npm is gonna find our *executable to symlink for global installs* [see more](https://docs.npmjs.com/files/package.json#bin). The `cliBuilder` tells to our package where our commands files will be. This can be done with support of **wildcards** such: /path/command.*.js, /\**/my-command.js.
 
 ### Command Schema
-Now our package knows where to find the commands, lets create them. CLI Builder API supplys a command's schema creator, then we can specify our commands:
+Now the package knows where to find our command, let's create it:
 
 ```node
 // ./commands/print.js
 
 let cli = require('cli-builder-api');
+
+/*
+*  The main method is where you'll put your program's logic. It can has any name, since the 'entry point' be specified in   *  the main field at the command schema.
+*  OBS: Any main method has access to the command options inside his param. They are parsed to camelCase in case they are - *  separated.
+*/
 
 function main(options) {
     if(options.hello){
@@ -72,8 +77,10 @@ We also told in our `package.json` how to call and where is our executable, but 
 #!/usr/bin/env node
 
 require('cli-builder-api').exec();
-
 ```
+
+**OBS**: Note that our first line is a [shebang](https://www.in-ulm.de/~mascheck/various/shebang/).  
+
 
 ## License
 ```
