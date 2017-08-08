@@ -7,7 +7,7 @@ This project is meant to be a helper to abstract some unecessary layers for CLIs
 
 ## Usage
 ### Config
-Because CLI Builder API does not need that much, all the informations are kept on your `package.json` node's project. This is an example of a minimum `package.json` file the package requires:
+Because CLI Builder API does not need that much, all the informations are kept on your `package.json` node's project. This is an example of a minimum `package.json` file a project requires:
 
 `package.json`
 ```json
