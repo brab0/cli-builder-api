@@ -3,7 +3,7 @@ const Command = require('./lib/Command');
 
 let commands = new CommandList();
 
-const config = require('config');
+const config = require('./config');
 
 function command(schema){    
     commands.add(new Command(schema));
