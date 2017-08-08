@@ -84,8 +84,7 @@ This package has basically two default options: `--help`(or `-h`) and `--version
 
 ### Let's try it?
 Yep, **that's it**! You have built a simple CLI. So, now what?
-There is basically two ways to run it. First, you can install it globally or second, create a bunch of *scripts* in the `package.json` file.
-I prefer the second option while I'm testing my commands. Based on this project, I would do something like: 
+There is basically two ways to run it. First, you can install it globally or second, create a bunch of *scripts* in the `package.json` file. I prefer the second option while I'm testing my commands. Based on this project, I would suggest something like:
 
 `package.json`
 ```json
@@ -99,9 +98,12 @@ I prefer the second option while I'm testing my commands. Based on this project,
     "print_hl": "node . print -hl",
     "print_goodbye": "node . print --goodbye",
     "print_bye": "node . print -bye"
-  },
+},
 ...
 ```
+To run: `npm run version`, `npm run help`, `npm run print` etc etc etc!
+
+To run the first one (global install), you can always publish you package `npm publish` and then install it globally `npm install print -g` or even, inside the project's folder, run `npm install . -g`. After to symlink, execute like `print hello`, for example.
 
 ## License
 ```
