@@ -31,6 +31,7 @@ Note that, except for `bin` and `cliBuilder`, all the others are ordinary fields
 
 ### Command Schema
 Now the package knows where to find our command, let's specify our **greeting command**:
+
 `./commands/print.js`
 ```node
 
@@ -81,9 +82,26 @@ require('cli-builder-api').exec();
 ### Default Options
 This package has basically two default options: `--help`(or `-h`) and `--version`(or `-v`). There's no much to say here, but it's interesting to note that all the help's content comes from the command's schema.
 
-### Let's Try It?
-Yep, that's it! You have built a simple CLI. So, now what? Well, we have to run it!
+### Let's try it?
+Yep, **that's it**! You have built a simple CLI. So, now what?
+There is basically two ways to run it. First, you can install it globally or second, create a bunch of *scripts* in the `package.json` file.
+I prefer the second option while I'm testing my commands. Based on this project, I would do something like: 
 
+`package.json`
+```json
+...
+"scripts": {
+    "version": "node . --version",
+    "help": "node . --help",
+    "print": "node . print",
+    "print_help": "node . print --help",
+    "print_hello": "node . print --hello",
+    "print_hl": "node . print -hl",
+    "print_goodbye": "node . print --goodbye",
+    "print_bye": "node . print -bye"
+  },
+...
+```
 
 ## License
 ```
