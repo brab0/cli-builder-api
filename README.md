@@ -8,8 +8,8 @@ This project is meant to be a helper to abstract some unecessary layers for CLIs
 ## Usage
 ### Config
 Because CLI Builder API does not need that much, all the informations are kept on your `package.json` node's project:
-
-```package.json
+`package.json`
+```json
 {
   "name": "new-project",
   "version": "0.0.1",
@@ -27,19 +27,15 @@ Because CLI Builder API does not need that much, all the informations are kept o
 }
 ```
 
-**Note** that, except for `bin` and `cliBuilder`, all the others are ordinary fields gotten from a `npm init` command. The extra attribute `bin`, informs how we gonna call(`my-project`) and where(`./bin/my-project.js`) npm is gonna find our *executable to symlink for global installs* [see more](https://docs.npmjs.com/files/package.json#bin). The `cliBuilder` tells to our package where our commands files will be. This can be done with support of **wildcards** such: /path/command.*.js, /\**/my-command.js.
+**Note** that, except for `bin` and `cliBuilder`, all the others are ordinary fields gotten from a `npm init` command. The `bin` attribute informs how we gonna call(`my-project`) and where(`./bin/my-project.js`) npm is gonna find our *executable to symlink for global installs* [see more](https://docs.npmjs.com/files/package.json#bin). The `cliBuilder` tells to our package where our commands files will be with **wildcards** support(/path/command.*.js, /\**/my-command.js).
 
 ### Command Schema
-Now the package knows where to find our command, let's create it:
-
+Now the package knows where to find our command, let's specify our **greeting command**:
+`./commands/print.js`
 ```node
-// ./commands/print.js
-
-let cli = require('cli-builder-api');
 
 /*
-*  The main method is where you'll put your program's logic. It can has any name, since the 'entry point' be specified in   *  the main field at the command schema.
-*  OBS: Any main method has access to the command options inside his param. They are parsed to camelCase in case they are - *  separated.
+*  The main method is where you'll put your command's logic. Of course it can has any name, since the 'entry point' is      *  specified in the main field at the command schema.
 */
 
 function main(options) {
@@ -50,7 +46,8 @@ function main(options) {
     }
 }
 
-cli.command({
+// our command's schema
+require('cli-builder-api').command({
     name: 'print',
     abbrev: 'p',
     main : main,
@@ -70,16 +67,20 @@ cli.command({
 ```
 
 ### Executable
-We also told in our `package.json` how to call and where is our executable, but does not have it yet. So, let's do it:
+We sayd in the `bin` field from our `package.json` how to call and where is our executable, but does not have it yet. So, let's do it:
+`./bin/my-project.js`
 ```node
-// ./bin/my-project.js
-
 #!/usr/bin/env node
 
 require('cli-builder-api').exec();
 ```
+**OBS**: Note that our first line is a [shebang](https://www.in-ulm.de/~mascheck/various/shebang/). Unless you wanna do something before/after the require function, this file should be immutable. The shebang will tell to the system's interpreter what kind of code it has to expect(`node`) and read. The second one will execute the CLI Builder API, which is gonna call all the commands (according to the configuration).
 
-**OBS**: Note that our first line is a [shebang](https://www.in-ulm.de/~mascheck/various/shebang/).  
+### Default Options
+This package has basically two default options: `--help`(or `-h`) and `--version`(or `-v`). There's no much to say here, but it's interesting to note that all the help's content comes from the command's schema.
+
+### Let's Try It?
+Yep, that's it! You have built a simple CLI. So, now what? Well, we have to run it!
 
 
 ## License
