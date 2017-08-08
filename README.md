@@ -29,7 +29,7 @@ Because CLI Builder API does not need that much, all the informations are kept o
 
 Note that, except for `bin` and `cliBuilder`, all the others are ordinary fields gotten from a `npm init` command. The extra attribute `bin`, informs how we gonna call(`my-project`) and where(`./bin/my-project.js`) npm is gonna find our executable to symlink for global installs [see more](https://docs.npmjs.com/files/package.json#bin). The `cliBuilder` tells to our package where our commands files will be.
 
-### Commands Schema
+### Command Schema
 Now our package knows where to find the commands, lets create them. CLI Builder API supplys a command's schema creator, then we can specify our commands:
 
 ```node
@@ -38,7 +38,11 @@ Now our package knows where to find the commands, lets create them. CLI Builder 
 let cli = require('cli-builder-api');
 
 function main(options) {
-    console.log("exporting with: ", options);
+    if(options.hello){
+        console.log("Your CLI says Hello!");
+    } else if(options.goodbye){
+        console.log("Your CLI says Goodbye!");
+    }
 }
 
 cli.command({
@@ -60,9 +64,16 @@ cli.command({
 });
 ```
 
-### Glueing the PArts
+### Executable
+We also told in our `package.json` how to call and where is our executable, but does not have it yet. So, let's do it:
+```node
+// ./bin/my-project.js
 
-### Executing
+#!/usr/bin/env node
+
+require('cli-builder-api').exec();
+
+```
 
 ## License
 ```
