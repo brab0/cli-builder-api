@@ -71,6 +71,7 @@ require('cli-builder-api').command({
 
 ### Executable
 We sayd in the `bin` field from our `package.json` how to call and where is our executable, but does not have it yet. So, let's do it:
+
 `./bin/my-project.js`
 ```node
 #!/usr/bin/env node
@@ -101,9 +102,9 @@ There is basically two ways to run it. First, you can install it globally or sec
 },
 ...
 ```
-To run: `npm run version`, `npm run help`, `npm run print` etc etc etc!
+To run: `npm run version`, `npm run help`, `npm run print`...you get it, right?!
 
-To run the first one (global install), you can always publish you package `npm publish` and then install it globally `npm install print -g` or even, inside the project's folder, run `npm install . -g`. After to symlink, execute like `print hello`, for example.
+To try on the first way (global install), you can always publish you package `npm publish` and then install it globally `npm install print -g` or even, inside the project's folder, run `npm install . -g`. After to symlink it, execute like `print hello`, for example.
 
 ## License
 ```
