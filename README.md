@@ -7,7 +7,8 @@ This project is meant to be a helper to abstract some unecessary layers for CLIs
 
 ## Usage
 ### Config
-Because CLI Builder API does not need that much, all the informations are kept on your `package.json` node's project:
+Because CLI Builder API does not need that much, all the informations are kept on your `package.json` node's project. This is an example of a minimum `package.json` file the package requires:
+
 `package.json`
 ```json
 {
@@ -26,8 +27,7 @@ Because CLI Builder API does not need that much, all the informations are kept o
   }
 }
 ```
-
-**Note** that, except for `bin` and `cliBuilder`, all the others are ordinary fields gotten from a `npm init` command. The `bin` attribute informs how we gonna call(`my-project`) and where(`./bin/my-project.js`) npm is gonna find our *executable to symlink for global installs* [see more](https://docs.npmjs.com/files/package.json#bin). The `cliBuilder` tells to our package where our commands files will be with **wildcards** support(/path/command.*.js, /\**/my-command.js).
+Note that, except for `bin` and `cliBuilder`, all the others are ordinary fields gotten from a `npm init` command. The `bin` attribute informs how we gonna call(`my-project`) and where(`./bin/my-project.js`) npm is gonna find our *executable to symlink for global installs* [see more](https://docs.npmjs.com/files/package.json#bin). The `cliBuilder` tells to our package where our commands files will be with **wildcards** support(/path/command.*.js, /\**/my-command.js).
 
 ### Command Schema
 Now the package knows where to find our command, let's specify our **greeting command**:
@@ -35,7 +35,9 @@ Now the package knows where to find our command, let's specify our **greeting co
 ```node
 
 /*
-*  The main method is where you'll put your command's logic. Of course it can has any name, since the 'entry point' is      *  specified in the main field at the command schema.
+*  The main method is where you'll put your command's logic. 
+*  Of course it can has any name, since the 'entry point' is
+*  specified in the main field at the command schema.
 */
 
 function main(options) {
