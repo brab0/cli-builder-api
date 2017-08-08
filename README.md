@@ -1,48 +1,68 @@
 CLI Builder API
 ===============
-CLI Builder API is meant to be a helper to abstract some unecessary layers on global CLIs development, by providing a command schema creator and a single line executor.
+This project is meant to be a helper to abstract some unecessary layers for global CLIs development, by providing a command schema creator and a single line executor.
 
 ## Instalation
     $ npm install cli-builder-api --save
 
 ## Usage
-After start a new node project (`npm init new-project`), sync it with a git repo (strongly recommended) and install this package locally, you should see a `package.json` file as shown below:
+### Config
+Because CLI Builder API does not need that much, all the informations are kept on your `package.json` node's project:
 
-```json
+```package.json
 {
   "name": "new-project",
   "version": "0.0.1",
   "description": "A CLI for console something.",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/brab0/new-project.git"
-  },
-  "author": "Rodrigo Brabo <brabo.rodrigo@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/brab0/new-project/issues"
-  },
+  "author": "You Name <your@email.com>",
   "homepage": "https://github.com/brab0/new-project#readme",
-  "dependencies": {
-    "cli-builder-api": "^0.0.1"
-  }
-}
-```
-It is very important to fill and keep this file updated with useful informations 'cause `cli-builder-api` use them (in --help, for example). Plus, we're gonna need to add some attributes, such as:
-
-```json
-...
   "bin": {
     "my-project": "./bin/my-project.js"
   },
   "cliBuilder": {
     "commands": {
-      "path": "commands/*.js",
-      "default": "help"
+      "path": "commands/*.js"
     }
   }
+}
 ```
+
+Note that, except for `bin` and `cliBuilder`, all the others are ordinary fields gotten from a `npm init` command. The extra attribute `bin`, informs how we gonna call(`my-project`) and where(`./bin/my-project.js`) npm is gonna find our executable to symlink for global installs [see more](https://docs.npmjs.com/files/package.json#bin). The `cliBuilder` tells to our package where our commands files will be.
+
+### Commands Schema
+Now our package knows where to find the commands, lets create them. CLI Builder API supplys a command's schema creator, then we can specify our commands:
+
+```node
+// ./commands/print.js
+
+let cli = require('cli-builder-api');
+
+function main(options) {
+    console.log("exporting with: ", options);
+}
+
+cli.command({
+    name: 'print',
+    abbrev: 'p',
+    main : main,
+    description : "prints a greeting message",
+    options :[{
+        name : "hello",
+        abbrev : "hl",
+        type: Boolean,
+        description: "tells to program printing hello"
+    }, {
+        name : "goodbye",
+        abbrev : "bye",
+        type: Boolean,
+        description: "tells to program printing goodbye"
+    }]
+});
+```
+
+### Glueing the PArts
+
+### Executing
 
 ## License
 ```
