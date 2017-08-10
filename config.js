@@ -10,7 +10,7 @@ const config = {
     repository : pkg.repository,
     license : pkg.license,
     homepage : pkg.homepage,
-    commands : pkg.crafter.commands,
+    commands : pkg.schemium.commands,
     version : pkg.version
 }
 

@@ -1,5 +1,5 @@
 {
-  "name": "crafter-api",
+  "name": "schemium-api",
   "version": "0.0.1",
   "description": "Build Command Line Interface applications on a simple way.",
   "main": "index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/brab0/crafter-api.git"
+    "url": "git+https://github.com/brab0/schemium-api.git"
   },
   "author": "Rodrigo Brabo <brabo.rodrigo@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/brab0/crafter-api/issues"
+    "url": "https://github.com/brab0/schemium-api/issues"
   },
-  "homepage": "https://github.com/brab0/crafter-api#readme",
+  "homepage": "https://github.com/brab0/schemium-api#readme",
   "dependencies": {
     "mout": "^1.0.0",
     "nopt": "^4.0.1",
