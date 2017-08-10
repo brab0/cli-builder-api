@@ -1,13 +1,13 @@
-CLI Builder API
+Crafter API
 ===============
 This project is meant to be a helper to abstract some unecessary layers for CLIs development by providing a command schema creator and a single line executor.
 
 ## Instalation
-    $ npm install cli-builder-api --save
+    $ npm install crafter-api --save
 
 ## Usage
 ### Config
-Because CLI Builder API does not need that much, all the informations are kept on your `package.json` node's project. This is an example of a minimum `package.json` file a project requires:
+Because Crafter API does not need that much, all the informations are kept on your `package.json` node's project. This is an example of a minimum `package.json` file a project requires:
 
 `package.json`
 ```json
@@ -20,14 +20,14 @@ Because CLI Builder API does not need that much, all the informations are kept o
   "bin": {
     "my-project": "./bin/my-project.js"
   },
-  "cliBuilder": {
+  "crafter": {
     "commands": {
       "path": "commands/*.js"
     }
   }
 }
 ```
-Note that, except for `bin` and `cliBuilder`, all the others are ordinary fields gotten from a `npm init` command. The `bin` attribute informs how we gonna call(`my-project`) and where(`./bin/my-project.js`) npm is gonna find our *executable to symlink for global installs* [see more](https://docs.npmjs.com/files/package.json#bin). The `cliBuilder` tells to our package where our commands files will be with **wildcards** support(/path/command.*.js, /\**/my-command.js).
+Note that, except for `bin` and `crafter`, all the others are ordinary fields gotten from a `npm init` command. The `bin` attribute informs how we gonna call(`my-project`) and where(`./bin/my-project.js`) npm is gonna find our *executable to symlink for global installs* [see more](https://docs.npmjs.com/files/package.json#bin). The `crafter` tells to our package where our commands files will be with **wildcards** support(/path/command.*.js, /\**/my-command.js).
 
 ### Command Schema
 Now the package knows where to find our command, let's specify our **greeting command**:
@@ -50,7 +50,7 @@ function main(options) {
 }
 
 // our command's schema
-require('cli-builder-api').command({
+require('crafter-api').command({
     name: 'print',
     abbrev: 'p',
     main : main,
@@ -76,9 +76,9 @@ We sayd in the `bin` field from our `package.json` how to call and where is our 
 ```node
 #!/usr/bin/env node
 
-require('cli-builder-api').exec();
+require('crafter-api').exec();
 ```
-**OBS**: Note that our first line is a [shebang](https://www.in-ulm.de/~mascheck/various/shebang/). Unless you wanna do something before/after the require function, this file should be immutable. The shebang will tell to the system's interpreter what kind of code it has to expect(`node`) and read. The second one will execute the CLI Builder API, which is gonna call all the commands (according to the configuration).
+**OBS**: Note that our first line is a [shebang](https://www.in-ulm.de/~mascheck/various/shebang/). Unless you wanna do something before/after the require function, this file should be immutable. The shebang will tell to the system's interpreter what kind of code it has to expect(`node`) and read. The second one will execute the Crafter API, which is gonna call all the commands (according to the configuration).
 
 ### Default Options
 This package has basically two default options: `--help`(or `-h`) and `--version`(or `-v`). There's no much to say here, but it's interesting to note that all the help's content comes from the command's schema.

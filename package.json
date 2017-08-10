@@ -1,6 +1,6 @@
 {
-  "name": "cli-builder-api",
-  "version": "0.0.5",
+  "name": "crafter-api",
+  "version": "0.0.1",
   "description": "Build Command Line Interface applications on a simple way.",
   "main": "index.js",
   "scripts": {
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/brab0/cli-builder-api.git"
+    "url": "git+https://github.com/brab0/crafter-api.git"
   },
   "author": "Rodrigo Brabo <brabo.rodrigo@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/brab0/cli-builder-api/issues"
+    "url": "https://github.com/brab0/crafter-api/issues"
   },
-  "homepage": "https://github.com/brab0/cli-builder-api#readme",
+  "homepage": "https://github.com/brab0/crafter-api#readme",
   "dependencies": {
     "mout": "^1.0.0",
     "nopt": "^4.0.1",

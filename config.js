@@ -10,7 +10,7 @@ const config = {
     repository : pkg.repository,
     license : pkg.license,
     homepage : pkg.homepage,
-    commands : pkg.cliBuilder.commands,
+    commands : pkg.crafter.commands,
     version : pkg.version
 }
 
