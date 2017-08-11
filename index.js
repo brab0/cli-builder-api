@@ -14,7 +14,7 @@ function exec(){
 
     process.bin = process.title = config.name;
     
-    require('require-files').only(config.commands.path);
+    require('require-files').only(config.path.schemas);
 
     new CLI(commands).exec();
 }
