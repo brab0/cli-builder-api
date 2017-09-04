@@ -22,5 +22,6 @@ function exec(){
 module.exports = {
     exec : exec,
     command : command,
-    config : config
+    config : config,
+    utils: require('./utils')
 }
