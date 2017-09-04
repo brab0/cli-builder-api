@@ -23,5 +23,5 @@ module.exports = {
     exec : exec,
     command : command,
     config : config,
-    utils: require('./utils')
+    essentials: require('./essentials')
 }
